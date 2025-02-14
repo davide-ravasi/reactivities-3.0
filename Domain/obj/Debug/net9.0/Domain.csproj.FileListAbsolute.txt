@@ -1,0 +1,11 @@
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\bin\Debug\net9.0\Domain.deps.json
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\bin\Debug\net9.0\Domain.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\bin\Debug\net9.0\Domain.pdb
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\Domain.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\refint\Domain.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\Domain.pdb
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Domain\obj\Debug\net9.0\ref\Domain.dll
