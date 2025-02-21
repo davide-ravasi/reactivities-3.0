@@ -13,3 +13,4 @@ C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Persistence\obj\Debug\
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Persistence\obj\Debug\net9.0\refint\Persistence.dll
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Persistence\obj\Debug\net9.0\Persistence.pdb
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Persistence\obj\Debug\net9.0\ref\Persistence.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Persistence\obj\Debug\net9.0\Persistence.sourcelink.json

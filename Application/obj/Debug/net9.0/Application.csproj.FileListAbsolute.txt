@@ -15,3 +15,4 @@ C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Application\obj\Debug\
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Application\obj\Debug\net9.0\refint\Application.dll
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Application\obj\Debug\net9.0\Application.pdb
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Application\obj\Debug\net9.0\ref\Application.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\Application\obj\Debug\net9.0\Application.sourcelink.json
