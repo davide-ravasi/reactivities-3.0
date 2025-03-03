@@ -147,3 +147,5 @@ C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\API\bin\Debug\net9.0\r
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\API\bin\Debug\net9.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\API\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\API\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\API\bin\Debug\net9.0\MediatR.dll
+C:\Users\dravasi\Documents\.NET_projects\reactivities-3.0\API\bin\Debug\net9.0\MediatR.Contracts.dll
