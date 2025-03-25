@@ -5,7 +5,11 @@ import Typography from "@mui/material/Typography";
 import { Button, Container, MenuItem } from "@mui/material";
 import { Group } from "@mui/icons-material";
 
-export default function NavBar() {
+export default function NavBar({
+  openForm,
+}: {
+  openForm: (id?: string) => void;
+}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -54,7 +58,12 @@ export default function NavBar() {
                 Contact
               </MenuItem>
             </Box>
-            <Button size="large" variant="contained" color="warning">
+            <Button
+              size="large"
+              variant="contained"
+              color="warning"
+              onClick={openForm}
+            >
               Create activity
             </Button>
           </Toolbar>

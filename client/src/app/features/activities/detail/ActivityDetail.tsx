@@ -10,11 +10,13 @@ import {
 export interface IActivityDetailProps {
   selectedActivity: Activity;
   handleCancelSelectedActivity: () => void;
+  handleOpenForm: (id?: string) => void;
 }
 
 export default function ActivityDetail({
   selectedActivity,
   handleCancelSelectedActivity,
+  handleOpenForm,
 }: IActivityDetailProps) {
   return (
     <Card>
@@ -32,7 +34,12 @@ export default function ActivityDetail({
         <Typography variant="body2">{selectedActivity.description}</Typography>
       </CardContent>
       <CardActions>
-        <Button color="primary">Edit</Button>
+        <Button
+          color="primary"
+          onClick={() => handleOpenForm(selectedActivity.id)}
+        >
+          Edit
+        </Button>
         <Button color="inherit" onClick={() => handleCancelSelectedActivity()}>
           Cancel
         </Button>

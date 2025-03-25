@@ -9,6 +9,7 @@ function App() {
   const [selectedActivity, setSelectedActivity] = useState<
     Activity | undefined
   >(undefined);
+  const [editMode, setEditMode] = useState(false);
 
   const handleSelectedActivity = (id: string) => {
     setSelectedActivity(activities.find((a) => a.id === id));
@@ -18,6 +19,18 @@ function App() {
     setSelectedActivity(undefined);
   };
 
+  const handleOpenForm = (id?: string) => {
+    if (id) {
+      handleSelectedActivity(id);
+    } else {
+      handleCancelSelectedActivity();
+    }
+    setEditMode(true);
+  };
+
+  const handleCloseForm = () => {
+    setEditMode(false);
+  };
   // axios automatically parses JSON responses
   // and returns the parsed data in the response.data property
   // no need to call response.json()
@@ -32,13 +45,16 @@ function App() {
   return (
     <Box sx={{ backgroundColor: "#eeeeee" }}>
       <CssBaseline />
-      <NavBar />
+      <NavBar openForm={handleOpenForm} />
       <Container maxWidth="xl" sx={{ mt: 3 }}>
         <ActivityDashboard
           activities={activities}
           selectedActivity={selectedActivity}
           handleSelectedActivity={handleSelectedActivity}
           handleCancelSelectedActivity={handleCancelSelectedActivity}
+          editMode={editMode}
+          handleOpenForm={handleOpenForm}
+          handleCloseForm={handleCloseForm}
         />
       </Container>
     </Box>
