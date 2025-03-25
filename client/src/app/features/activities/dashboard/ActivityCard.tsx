@@ -7,7 +7,13 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function ActivityCard({ activity }: { activity: Activity }) {
+export default function ActivityCard({
+  activity,
+  handleSelectedActivity,
+}: {
+  activity: Activity;
+  handleSelectedActivity: (id: string) => void;
+}) {
   return (
     <Card>
       <CardContent>
@@ -24,7 +30,11 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Chip label={activity.category} variant="outlined" />
-        <Button size="medium" variant="contained">
+        <Button
+          size="medium"
+          variant="contained"
+          onClick={() => handleSelectedActivity(activity.id)}
+        >
           View
         </Button>
       </CardActions>

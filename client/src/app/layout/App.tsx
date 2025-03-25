@@ -6,6 +6,17 @@ import ActivityDashboard from "../features/activities/dashboard/ActivityDashboar
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<
+    Activity | undefined
+  >(undefined);
+
+  const handleSelectedActivity = (id: string) => {
+    setSelectedActivity(activities.find((a) => a.id === id));
+  };
+
+  const handleCancelSelectedActivity = () => {
+    setSelectedActivity(undefined);
+  };
 
   // axios automatically parses JSON responses
   // and returns the parsed data in the response.data property
@@ -23,7 +34,12 @@ function App() {
       <CssBaseline />
       <NavBar />
       <Container maxWidth="xl" sx={{ mt: 3 }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard
+          activities={activities}
+          selectedActivity={selectedActivity}
+          handleSelectedActivity={handleSelectedActivity}
+          handleCancelSelectedActivity={handleCancelSelectedActivity}
+        />
       </Container>
     </Box>
   );
