@@ -8,24 +8,25 @@ type Props = {
   submitForm: (activity: Activity) => void;
 };
 
-export default function ActivityForm({ activity, closeForm }: Props) {
+export default function ActivityForm({
+  activity,
+  closeForm,
+  submitForm,
+}: Props) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //const formData = new FormData(e.currentTarget);
 
-    // for (const [key, value] of formData) {
-    //     output.textContent += `${key}: ${value}\n`;
-    //   }
-    // const newActivity: Activity = {
-    //   id: activity?.id || "",
-    //   title: formData.get("title") as string,
-    //   description: formData.get("description") as string,
-    //   category: formData.get("category") as string,
-    //   date: formData.get("date") as string,
-    //   city: formData.get("city") as string,
-    //   venue: formData.get("venue") as string,
-    // };
-    // submitForm(newActivity);
+    const formData = new FormData(e.currentTarget);
+
+    const data: { [key: string]: FormDataEntryValue } = {};
+
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+
+    if (activity) data.id = activity.id;
+
+    submitForm(data as unknown as Activity);
   };
 
   return (

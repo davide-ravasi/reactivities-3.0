@@ -31,6 +31,26 @@ function App() {
   const handleCloseForm = () => {
     setEditMode(false);
   };
+
+  const handleSubmitForm = (activity: Activity) => {
+    if (activity.id) {
+      const updatedActivities = activities.map((a) =>
+        a.id === activity.id ? activity : a
+      );
+      setActivities(updatedActivities);
+    } else {
+      const newActivity = { ...activity, id: String(activities.length + 1) };
+      setActivities([...activities, newActivity]);
+    }
+
+    setEditMode(false);
+  };
+
+  const deleteActivity = (id: string) => {
+    const updatedActivities = activities.filter((a) => a.id !== id);
+    setActivities(updatedActivities);
+  };
+
   // axios automatically parses JSON responses
   // and returns the parsed data in the response.data property
   // no need to call response.json()
@@ -55,6 +75,8 @@ function App() {
           editMode={editMode}
           handleOpenForm={handleOpenForm}
           handleCloseForm={handleCloseForm}
+          handleSubmitForm={handleSubmitForm}
+          deleteActivity={deleteActivity}
         />
       </Container>
     </Box>

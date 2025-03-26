@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -10,9 +11,11 @@ import {
 export default function ActivityCard({
   activity,
   handleSelectedActivity,
+  deleteActivity,
 }: {
   activity: Activity;
   handleSelectedActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 }) {
   return (
     <Card>
@@ -30,13 +33,23 @@ export default function ActivityCard({
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Chip label={activity.category} variant="outlined" />
-        <Button
-          size="medium"
-          variant="contained"
-          onClick={() => handleSelectedActivity(activity.id)}
-        >
-          View
-        </Button>
+        <Box display="flex" justifyContent="end" gap={3}>
+          <Button
+            size="medium"
+            variant="contained"
+            color="error"
+            onClick={() => deleteActivity(activity.id)}
+          >
+            Delete
+          </Button>
+          <Button
+            size="medium"
+            variant="contained"
+            onClick={() => handleSelectedActivity(activity.id)}
+          >
+            View
+          </Button>
+        </Box>
       </CardActions>
     </Card>
   );
