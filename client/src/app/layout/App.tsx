@@ -66,17 +66,6 @@ function App() {
     },
   });
 
-  // axios automatically parses JSON responses
-  // and returns the parsed data in the response.data property
-  // no need to call response.json()
-  // useEffect(() => {
-  //   axios
-  //     .get<Activity[]>("https://localhost:5001/api/activities")
-  //     .then((response) => {
-  //       setActivities(response.data);
-  //     });
-  // }, []);
-
   {
     return (
       <Box sx={{ backgroundColor: "#eeeeee" }}>
