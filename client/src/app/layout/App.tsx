@@ -9,7 +9,7 @@ function App() {
     Activity | undefined
   >(undefined);
   const [editMode, setEditMode] = useState(false);
-  const { activities, isLoading, error } = useActivities();
+  const { mutation, activities, isLoading, error } = useActivities();
 
   const handleSelectedActivity = (id: string) => {
     setSelectedActivity(activities!.find((a) => a.id === id));
@@ -30,20 +30,6 @@ function App() {
 
   const handleCloseForm = () => {
     setEditMode(false);
-  };
-
-  const handleSubmitForm = (activity: Activity) => {
-    // if (activity.id) {
-    //   const updatedActivities = activities.map((a) =>
-    //     a.id === activity.id ? activity : a
-    //   );
-    //   setActivities(updatedActivities);
-    // } else {
-    //   const newActivity = { ...activity, id: String(activities.length + 1) };
-    //   setActivities([...activities, newActivity]);
-    // }
-    console.log(activity);
-    // setEditMode(false);
   };
 
   const deleteActivity = (id: string) => {
@@ -71,7 +57,7 @@ function App() {
               editMode={editMode}
               handleOpenForm={handleOpenForm}
               handleCloseForm={handleCloseForm}
-              handleSubmitForm={handleSubmitForm}
+              s
               deleteActivity={deleteActivity}
             />
           )}

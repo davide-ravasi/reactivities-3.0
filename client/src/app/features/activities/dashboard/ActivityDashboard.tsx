@@ -23,7 +23,6 @@ export default function ActivityDashboard({
   editMode,
   handleOpenForm,
   handleCloseForm,
-  handleSubmitForm,
   deleteActivity,
 }: IActivityDashboardProps) {
   return (
@@ -48,7 +47,6 @@ export default function ActivityDashboard({
           <ActivityForm
             activity={selectedActivity}
             closeForm={handleCloseForm}
-            submitForm={handleSubmitForm}
           />
         )}
       </Grid2>

@@ -1,19 +1,17 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { FormEvent } from "react";
+import { useActivities } from "../../../../lib/hooks/useActivities";
 //import { FormEvent } from "react";
 
 type Props = {
   activity?: Activity;
   closeForm: () => void;
-  submitForm: (activity: Activity) => void;
 };
 
-export default function ActivityForm({
-  activity,
-  closeForm,
-  submitForm,
-}: Props) {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+export default function ActivityForm({ activity, closeForm }: Props) {
+  const { updateActivities } = useActivities();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
@@ -24,9 +22,22 @@ export default function ActivityForm({
       data[key] = value;
     });
 
-    if (activity) data.id = activity.id;
+    if (activity) {
+      data.id = activity.id;
+      await updateActivities.mutateAsync(data as unknown as Activity);
+      closeForm();
+    }
 
-    submitForm(data as unknown as Activity);
+    // const updatedActivities = activities.map((a) =>
+    //   a.id === activity.id ? activity : a
+    // );
+    //setActivities(updatedActivities);
+
+    //const newActivity = { ...activity, id: String(activities.length + 1) };
+    //setActivities([...activities, newActivity]);
+    //setEditMode(false);
+
+    //submitForm(data as unknown as Activity);
   };
 
   return (
