@@ -1,5 +1,5 @@
 import { Box, Container, CssBaseline, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../features/activities/dashboard/ActivityDashboard";
 import { useActivities } from "../../lib/hooks/useActivities";

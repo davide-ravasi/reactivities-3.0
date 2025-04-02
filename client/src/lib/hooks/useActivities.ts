@@ -16,7 +16,7 @@ export const useActivities = () => {
   });
   const queryClient = new QueryClient();
 
-  const updateActivities = useMutation({
+  const updateActivity = useMutation({
     mutationFn: async (activity: Activity) => {
       const response = await agent.put<Activity>("/activities", activity);
       return response.data;
@@ -28,7 +28,7 @@ export const useActivities = () => {
   });
 
   return {
-    updateActivities,
+    updateActivity,
     activities,
     isLoading,
     error,

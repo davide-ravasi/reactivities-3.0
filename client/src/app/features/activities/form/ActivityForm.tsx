@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function ActivityForm({ activity, closeForm }: Props) {
-  const { updateActivities } = useActivities();
+  const { updateActivity } = useActivities();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function ActivityForm({ activity, closeForm }: Props) {
 
     if (activity) {
       data.id = activity.id;
-      await updateActivities.mutateAsync(data as unknown as Activity);
+      await updateActivity.mutateAsync(data as unknown as Activity);
       closeForm();
     }
 
@@ -69,7 +69,11 @@ export default function ActivityForm({ activity, closeForm }: Props) {
           name="date"
           label="Date"
           type="date"
-          defaultValue={activity?.date}
+          defaultValue={
+            activity?.date
+              ? new Date(activity.date).toISOString().split("T")[0]
+              : ""
+          }
         />
         <TextField name="city" label="City" defaultValue={activity?.city} />
         <TextField name="venue" label="Venue" defaultValue={activity?.venue} />
@@ -77,7 +81,12 @@ export default function ActivityForm({ activity, closeForm }: Props) {
           <Button onClick={closeForm} color="inherit">
             Cancel
           </Button>
-          <Button type="submit" color="success" variant="contained">
+          <Button
+            type="submit"
+            color="success"
+            variant="contained"
+            disabled={updateActivity.isPending}
+          >
             Submit
           </Button>
         </Box>

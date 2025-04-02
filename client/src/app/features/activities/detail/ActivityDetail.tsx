@@ -6,6 +6,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useActivities } from "../../../../lib/hooks/useActivities";
 
 export interface IActivityDetailProps {
   selectedActivity: Activity;
@@ -18,26 +19,29 @@ export default function ActivityDetail({
   handleCancelSelectedActivity,
   handleOpenForm,
 }: IActivityDetailProps) {
+  const { activities } = useActivities();
+
+  const activity = activities?.find((a) => a.id === selectedActivity.id);
+
+  if (!activity) return <Typography>Loading .....</Typography>;
+
   return (
     <Card>
       <CardMedia
         component="img"
-        src={`/images/categoryImages/${selectedActivity.category}.jpg`}
+        src={`/images/categoryImages/${activity.category}.jpg`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {selectedActivity.title}
+          {activity.title}
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 1 }}>
-          {selectedActivity.date}
+          {activity.date}
         </Typography>
-        <Typography variant="body2">{selectedActivity.description}</Typography>
+        <Typography variant="body2">{activity.description}</Typography>
       </CardContent>
       <CardActions>
-        <Button
-          color="primary"
-          onClick={() => handleOpenForm(selectedActivity.id)}
-        >
+        <Button color="primary" onClick={() => handleOpenForm(activity.id)}>
           Edit
         </Button>
         <Button color="inherit" onClick={() => handleCancelSelectedActivity()}>
