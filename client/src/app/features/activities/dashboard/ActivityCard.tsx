@@ -7,16 +7,21 @@ import {
   Chip,
   Typography,
 } from "@mui/material";
+import { useActivities } from "../../../../lib/hooks/useActivities";
 
 export default function ActivityCard({
   activity,
   handleSelectedActivity,
-  deleteActivity,
 }: {
   activity: Activity;
   handleSelectedActivity: (id: string) => void;
-  deleteActivity: (id: string) => void;
 }) {
+  const { deleteActivity } = useActivities();
+
+  const handleDeleteActivity = async (id: string) => {
+    await deleteActivity.mutateAsync(id);
+  };
+
   return (
     <Card>
       <CardContent>
@@ -38,7 +43,8 @@ export default function ActivityCard({
             size="medium"
             variant="contained"
             color="error"
-            onClick={() => deleteActivity(activity.id)}
+            onClick={() => handleDeleteActivity(activity.id)}
+            disabled={deleteActivity.isPending}
           >
             Delete
           </Button>

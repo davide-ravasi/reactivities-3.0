@@ -1,5 +1,5 @@
 import { Box, Container, CssBaseline, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NavBar from "./NavBar";
 import ActivityDashboard from "../features/activities/dashboard/ActivityDashboard";
 import { useActivities } from "../../lib/hooks/useActivities";
@@ -9,7 +9,7 @@ function App() {
     Activity | undefined
   >(undefined);
   const [editMode, setEditMode] = useState(false);
-  const { mutation, activities, isLoading, error } = useActivities();
+  const { activities, isLoading, error } = useActivities();
 
   const handleSelectedActivity = (id: string) => {
     setSelectedActivity(activities!.find((a) => a.id === id));
@@ -32,11 +32,11 @@ function App() {
     setEditMode(false);
   };
 
-  const deleteActivity = (id: string) => {
-    // const updatedActivities = activities.filter((a) => a.id !== id);
-    // setActivities(updatedActivities);
-    console.log(id);
-  };
+  // const deleteActivity = (id: string) => {
+  //   // const updatedActivities = activities.filter((a) => a.id !== id);
+  //   // setActivities(updatedActivities);
+  //   console.log(id);
+  // };
 
   {
     return (
@@ -57,8 +57,6 @@ function App() {
               editMode={editMode}
               handleOpenForm={handleOpenForm}
               handleCloseForm={handleCloseForm}
-              s
-              deleteActivity={deleteActivity}
             />
           )}
         </Container>

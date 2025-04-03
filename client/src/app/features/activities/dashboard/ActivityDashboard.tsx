@@ -11,8 +11,6 @@ export interface IActivityDashboardProps {
   editMode: boolean;
   handleOpenForm: (id?: string) => void;
   handleCloseForm: () => void;
-  handleSubmitForm: (activity: Activity) => void;
-  deleteActivity: (id: string) => void;
 }
 
 export default function ActivityDashboard({
@@ -23,7 +21,6 @@ export default function ActivityDashboard({
   editMode,
   handleOpenForm,
   handleCloseForm,
-  deleteActivity,
 }: IActivityDashboardProps) {
   return (
     <Grid2 container spacing={3}>
@@ -32,7 +29,6 @@ export default function ActivityDashboard({
         <ActivityList
           activities={activities}
           handleSelectedActivity={handleSelectedActivity}
-          deleteActivity={deleteActivity}
         />
       </Grid2>
       <Grid2 size={5}>
