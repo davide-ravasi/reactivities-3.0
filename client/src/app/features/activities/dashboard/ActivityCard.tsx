@@ -9,18 +9,12 @@ import {
 } from "@mui/material";
 import { useActivities } from "../../../../lib/hooks/useActivities";
 
-export default function ActivityCard({
-  activity,
-  handleSelectedActivity,
-}: {
-  activity: Activity;
-  handleSelectedActivity: (id: string) => void;
-}) {
+export default function ActivityCard({ activity }: { activity: Activity }) {
   const { deleteActivity } = useActivities();
 
-  const handleDeleteActivity = async (id: string) => {
-    await deleteActivity.mutateAsync(id);
-  };
+  // const handleDeleteActivity = async (id: string) => {
+  //   await deleteActivity.mutateAsync(id);
+  // };
 
   return (
     <Card>
@@ -43,16 +37,12 @@ export default function ActivityCard({
             size="medium"
             variant="contained"
             color="error"
-            onClick={() => handleDeleteActivity(activity.id)}
+            onClick={() => {}}
             disabled={deleteActivity.isPending}
           >
             Delete
           </Button>
-          <Button
-            size="medium"
-            variant="contained"
-            onClick={() => handleSelectedActivity(activity.id)}
-          >
+          <Button size="medium" variant="contained" onClick={() => {}}>
             View
           </Button>
         </Box>
