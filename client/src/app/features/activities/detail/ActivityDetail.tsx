@@ -18,9 +18,7 @@ export interface IActivityDetailProps {
 export default function ActivityDetail() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const { activities } = useActivities();
-
-  const activity = activities?.find((a) => a.id === id);
+  const { activity } = useActivities(id);
 
   if (!activity) return <Typography>Loading .....</Typography>;
 
