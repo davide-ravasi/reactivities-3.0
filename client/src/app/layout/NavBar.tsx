@@ -2,9 +2,9 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Button, Container, MenuItem } from "@mui/material";
+import { Container, MenuItem } from "@mui/material";
 import { Group } from "@mui/icons-material";
-import { NavLink } from "react-router";
+import MenuItemLink from "../shared/component/MenuItemLink";
 
 export default function NavBar() {
   return (
@@ -19,40 +19,16 @@ export default function NavBar() {
         <Container maxWidth="xl">
           <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
             <Box>
-              <MenuItem
-                component={NavLink}
-                to="/"
-                sx={{ display: "flex", gap: 2 }}
-              >
+              <MenuItemLink to="/">
                 <Group fontSize="large" />
                 <Typography variant="h4" fontWeight="bold">
                   Reactivities
                 </Typography>
-              </MenuItem>
+              </MenuItemLink>
             </Box>
             <Box sx={{ display: "flex", gap: 2 }}>
-              <MenuItem
-                component={NavLink}
-                to="/activities"
-                sx={{
-                  fontSize: "1.2em",
-                  textTransform: "uppercase",
-                  fontWeight: "bold",
-                }}
-              >
-                Activities
-              </MenuItem>
-              <MenuItem
-                component={NavLink}
-                to="/createActivitY"
-                sx={{
-                  fontSize: "1.2em",
-                  textTransform: "uppercase",
-                  fontWeight: "bold",
-                }}
-              >
-                Create activitY
-              </MenuItem>
+              <MenuItemLink to="/activities">Activities</MenuItemLink>
+              <MenuItemLink to="/createActivity">Create activity</MenuItemLink>
               {/* <MenuItem
                 sx={{
                   fontSize: "1.2em",
@@ -72,14 +48,15 @@ export default function NavBar() {
                 Contact
               </MenuItem> */}
             </Box>
-            <Button
+            {/* <Button
               size="large"
               variant="contained"
               color="warning"
               onClick={() => {}}
             >
               User menu
-            </Button>
+            </Button> */}
+            <MenuItem>User menu</MenuItem>
           </Toolbar>
         </Container>
       </AppBar>
