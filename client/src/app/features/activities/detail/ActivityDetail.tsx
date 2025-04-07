@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useActivities } from "../../../../lib/hooks/useActivities";
+import { Link, useNavigate, useParams } from "react-router";
 
 export interface IActivityDetailProps {
   selectedActivity: Activity;
@@ -14,14 +15,12 @@ export interface IActivityDetailProps {
   handleOpenForm: (id?: string) => void;
 }
 
-export default function ActivityDetail({
-  selectedActivity,
-  handleCancelSelectedActivity,
-  handleOpenForm,
-}: IActivityDetailProps) {
+export default function ActivityDetail() {
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
   const { activities } = useActivities();
 
-  const activity = activities?.find((a) => a.id === selectedActivity.id);
+  const activity = activities?.find((a) => a.id === id);
 
   if (!activity) return <Typography>Loading .....</Typography>;
 
@@ -41,10 +40,19 @@ export default function ActivityDetail({
         <Typography variant="body2">{activity.description}</Typography>
       </CardContent>
       <CardActions>
-        <Button color="primary" onClick={() => handleOpenForm(activity.id)}>
+        <Button
+          component={Link}
+          to={`/activities/${activity.id}`}
+          color="primary"
+        >
           Edit
         </Button>
-        <Button color="inherit" onClick={() => handleCancelSelectedActivity()}>
+        <Button
+          color="inherit"
+          onClick={() => {
+            navigate("/activities");
+          }}
+        >
           Cancel
         </Button>
       </CardActions>

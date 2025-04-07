@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useActivities } from "../../../../lib/hooks/useActivities";
+import { Link } from "react-router";
 
 export default function ActivityCard({ activity }: { activity: Activity }) {
   const { deleteActivity } = useActivities();
@@ -42,7 +43,12 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
           >
             Delete
           </Button>
-          <Button size="medium" variant="contained" onClick={() => {}}>
+          <Button
+            size="medium"
+            variant="contained"
+            component={Link}
+            to={`/activities/${activity.id}`}
+          >
             View
           </Button>
         </Box>
