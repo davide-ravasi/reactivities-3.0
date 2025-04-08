@@ -1,11 +1,14 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { FormEvent } from "react";
 import { useActivities } from "../../../../lib/hooks/useActivities";
+import { useNavigate, useParams } from "react-router";
 //import { FormEvent } from "react";
 
 export default function ActivityForm() {
-  const { createActivity, updateActivity } = useActivities();
-  const activity = {} as Activity; // Replace with actual activity data if needed
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const { activity, isLoadingActivity, createActivity, updateActivity } =
+    useActivities(id);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,8 +24,13 @@ export default function ActivityForm() {
     if (activity?.id) {
       data.id = activity.id;
       await updateActivity.mutateAsync(data as unknown as Activity);
+      navigate(`/activities/${activity.id}`);
     } else {
-      await createActivity.mutateAsync(data as unknown as Activity);
+      createActivity.mutate(data as unknown as Activity, {
+        onSuccess: (data) => {
+          navigate(`/activities/${data}`);
+        },
+      });
     }
 
     // const updatedActivities = activities.map((a) =>
@@ -36,6 +44,17 @@ export default function ActivityForm() {
 
     //submitForm(data as unknown as Activity);
   };
+
+  const handleCancel = () => {
+    if (activity?.id) {
+      navigate(`/activities/${activity.id}`);
+    } else {
+      navigate("/activities");
+    }
+  };
+
+  if (isLoadingActivity) return <Typography>Loading...</Typography>;
+  //if (!activity) return <Typography>Activity not found</Typography>;
 
   return (
     <Paper sx={{ borderRadius: 3, padding: 3 }}>
@@ -75,7 +94,7 @@ export default function ActivityForm() {
         <TextField name="city" label="City" defaultValue={activity?.city} />
         <TextField name="venue" label="Venue" defaultValue={activity?.venue} />
         <Box display="flex" justifyContent="end" gap={3}>
-          <Button onClick={() => {}} color="inherit">
+          <Button onClick={() => handleCancel()} color="inherit">
             Cancel
           </Button>
           <Button

@@ -23,6 +23,10 @@ export const router = createBrowserRouter([
         path: "activities/:id",
         Component: ActivityDetail,
       },
+      {
+        path: "manage/:id",
+        Component: ActivityForm,
+      },
       //   {
       //     path: "concerts",
       //     children: [
