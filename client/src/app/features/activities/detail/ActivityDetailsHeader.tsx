@@ -1,5 +1,6 @@
 import { Card, Badge, CardMedia, Box, Typography, Button } from "@mui/material";
 import { Link } from "react-router";
+import { formatDate } from "../../../../lib/util/util";
 //import { formatDate } from "../../../../lib/util/util";
 
 type Props = {
@@ -56,8 +57,7 @@ export default function ActivityDetailsHeader({ activity }: Props) {
             {activity.title}
           </Typography>
           <Typography variant="subtitle1">
-            {/* {formatDate(activity.date)} */}
-            {activity.date}
+            {formatDate(activity.date)}
           </Typography>
           <Typography variant="subtitle2">
             Hosted by{" "}

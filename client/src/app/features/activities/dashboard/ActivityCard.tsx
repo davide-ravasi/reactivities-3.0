@@ -9,9 +9,9 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-//import { useActivities } from "../../../../lib/hooks/useActivities";
 import { Link } from "react-router";
 import { AccessTime, Place } from "@mui/icons-material";
+import { formatDate } from "../../../../lib/util/util";
 
 export default function ActivityCard({ activity }: { activity: Activity }) {
   // const { deleteActivity } = useActivities();
@@ -59,7 +59,7 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
           <Box display="flex" flexGrow={0} alignItems="center">
             <AccessTime sx={{ mr: 1 }} />
             <Typography variant="body2" noWrap>
-              {/* {formatDate(activity.date)} */}
+              {formatDate(activity.date)}
             </Typography>
           </Box>
 
