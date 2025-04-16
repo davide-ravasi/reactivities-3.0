@@ -2,11 +2,15 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Container, MenuItem } from "@mui/material";
+import { Container, LinearProgress, MenuItem } from "@mui/material";
 import { Group } from "@mui/icons-material";
 import MenuItemLink from "../shared/component/MenuItemLink";
+import { Observer } from "mobx-react-lite";
+import { useStore } from "../../lib/hooks/useStore";
 
 export default function NavBar() {
+  const { uiStore } = useStore();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -60,6 +64,12 @@ export default function NavBar() {
           </Toolbar>
         </Container>
       </AppBar>
+      <Observer>
+        {() => {
+          const { isLoading } = uiStore;
+          return isLoading ? <LinearProgress color="primary" /> : null;
+        }}
+      </Observer>
     </Box>
   );
 }
