@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "fbMY91jFx5Q=",
+  "dgSpecHash": "rQQGAOqMG3s=",
   "success": true,
   "projectFilePath": "C:\\Users\\dravasi\\Documents\\.NET_projects\\reactivities-3.0\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dravasi\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
+    "C:\\Users\\dravasi\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\dravasi\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\dravasi\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
