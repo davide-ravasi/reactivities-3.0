@@ -613,26 +613,6 @@ Persistence/obj/Debug/net9.0/Persistence.dll
 Persistence/obj/Debug/net9.0/Persistence.pdb
 Persistence/obj/Debug/net9.0/ref/Persistence.dll
 Persistence/obj/Debug/net9.0/refint/Persistence.dll
-Domain/obj/Debug/net9.0/Domain.dll
-Domain/obj/Debug/net9.0/Domain.pdb
-Domain/obj/Debug/net9.0/ref/Domain.dll
-Domain/obj/Debug/net9.0/refint/Domain.dll
-Persistence/bin/Debug/net9.0/Domain.dll
-Persistence/bin/Debug/net9.0/Domain.pdb
-Persistence/bin/Debug/net9.0/Persistence.dll
-Persistence/bin/Debug/net9.0/Persistence.pdb
-Persistence/obj/Persistence.csproj.nuget.dgspec.json
-Persistence/obj/Persistence.csproj.nuget.g.props
-Persistence/obj/project.assets.json
-Persistence/obj/project.nuget.cache
-Persistence/obj/Debug/net9.0/Persistence.AssemblyInfo.cs
-Persistence/obj/Debug/net9.0/Persistence.AssemblyInfoInputs.cache
-Persistence/obj/Debug/net9.0/Persistence.csproj.AssemblyReference.cache
-Persistence/obj/Debug/net9.0/Persistence.csproj.CoreCompileInputs.cache
-Persistence/obj/Debug/net9.0/Persistence.dll
-Persistence/obj/Debug/net9.0/Persistence.pdb
-Persistence/obj/Debug/net9.0/ref/Persistence.dll
-Persistence/obj/Debug/net9.0/refint/Persistence.dll
 Domain/obj/Debug/net9.0/Domain.csproj.CoreCompileInputs.cache
 Domain/obj/Debug/net9.0/Domain.dll
 Domain/obj/Debug/net9.0/Domain.pdb
@@ -704,3 +684,13 @@ Persistence/obj/Debug/net9.0/Persistence.dll
 Persistence/obj/Debug/net9.0/Persistence.pdb
 Persistence/obj/Debug/net9.0/ref/Persistence.dll
 Persistence/obj/Debug/net9.0/refint/Persistence.dll
+
+# ----- Reactivities project specific ignores -----
+# Ensure build outputs, obj folders, and local SQLite DB are never committed
+**/bin/
+**/obj/
+API/reactivities.db
+# Catch any stray compiled binaries
+*.dll
+*.pdb
+*.exe

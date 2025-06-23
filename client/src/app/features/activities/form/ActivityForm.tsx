@@ -1,48 +1,24 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
-import { FormEvent } from "react";
 import { useActivities } from "../../../../lib/hooks/useActivities";
 import { useNavigate, useParams } from "react-router";
-//import { FormEvent } from "react";
+import { useForm, FieldValues } from "react-hook-form";
+import { useEffect } from "react";
 
 export default function ActivityForm() {
+  const { register, reset, handleSubmit } = useForm<Activity>();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { activity, isLoadingActivity, createActivity, updateActivity } =
     useActivities(id);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    const data: { [key: string]: FormDataEntryValue } = {};
-
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-
-    if (activity?.id) {
-      data.id = activity.id;
-      await updateActivity.mutateAsync(data as unknown as Activity);
-      navigate(`/activities/${activity.id}`);
-    } else {
-      createActivity.mutate(data as unknown as Activity, {
-        onSuccess: (data) => {
-          navigate(`/activities/${data}`);
-        },
-      });
+  useEffect(() => {
+    if (activity) {
+      reset(activity);
     }
+  }, [activity, reset]);
 
-    // const updatedActivities = activities.map((a) =>
-    //   a.id === activity.id ? activity : a
-    // );
-    //setActivities(updatedActivities);
-
-    //const newActivity = { ...activity, id: String(activities.length + 1) };
-    //setActivities([...activities, newActivity]);
-    //setEditMode(false);
-
-    //submitForm(data as unknown as Activity);
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
   };
 
   const handleCancel = () => {
@@ -66,23 +42,28 @@ export default function ActivityForm() {
         display="flex"
         flexDirection="column"
         gap={3}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField name="title" label="Title" defaultValue={activity?.title} />
         <TextField
-          name="description"
+          {...register("title")}
+          label="Title"
+          defaultValue={activity?.title}
+        />
+        <TextField
+          {...register("description")}
           label="Description"
           defaultValue={activity?.description}
           multiline
           rows={3}
         />
         <TextField
-          name="category"
+          {...register("category")}
           label="Category"
           defaultValue={activity?.category}
+          select
         />
         <TextField
-          name="date"
+          {...register("date")}
           label="Date"
           type="date"
           defaultValue={
@@ -91,8 +72,16 @@ export default function ActivityForm() {
               : ""
           }
         />
-        <TextField name="city" label="City" defaultValue={activity?.city} />
-        <TextField name="venue" label="Venue" defaultValue={activity?.venue} />
+        <TextField
+          {...register("city")}
+          label="City"
+          defaultValue={activity?.city}
+        />
+        <TextField
+          {...register("venue")}
+          label="Venue"
+          defaultValue={activity?.venue}
+        />
         <Box display="flex" justifyContent="end" gap={3}>
           <Button onClick={() => handleCancel()} color="inherit">
             Cancel

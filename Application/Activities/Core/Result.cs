@@ -1,5 +1,3 @@
-using System;
-
 namespace Application.Activities.Core;
 
 public class Result<T>
