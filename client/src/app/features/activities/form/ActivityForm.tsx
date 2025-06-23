@@ -1,11 +1,23 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import { useActivities } from "../../../../lib/hooks/useActivities";
 import { useNavigate, useParams } from "react-router";
-import { useForm, FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import {
+  activitySchema,
+  ActivitySchema,
+} from "../../../../lib/schemas/activitySchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function ActivityForm() {
-  const { register, reset, handleSubmit } = useForm<Activity>();
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ActivitySchema>({
+    resolver: zodResolver(activitySchema),
+  });
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { activity, isLoadingActivity, createActivity, updateActivity } =
@@ -17,7 +29,7 @@ export default function ActivityForm() {
     }
   }, [activity, reset]);
 
-  const onSubmit = async (data: FieldValues) => {
+  const onSubmit = async (data: ActivitySchema) => {
     console.log(data);
   };
 
@@ -48,6 +60,8 @@ export default function ActivityForm() {
           {...register("title")}
           label="Title"
           defaultValue={activity?.title}
+          error={!!errors.title}
+          helperText={errors.title ? errors.title.message : ""}
         />
         <TextField
           {...register("description")}
