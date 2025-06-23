@@ -1,5 +1,6 @@
 using Application.Activities.Core;
 using Application.Activities.Validators;
+using API.Middleware;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -21,12 +22,17 @@ builder.Services.AddMediatR(x =>
 });
 builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddValidatorsFromAssemblyContaining<CreateActivityValidator>();
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
 
-// Configure the HTTP request pipelin   e.
+// Add validation exception middleware
+//app.UseValidationExceptionHandler();
+
+// Configure the HTTP request pipeline.
 app.MapControllers(); // provides routing for the API
 
 using var scope = app.Services.CreateScope();
