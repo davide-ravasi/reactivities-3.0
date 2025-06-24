@@ -16,3 +16,8 @@ public class Result<T>
         Code = code
     };
 }
+
+// generic Result class to encapsulate the result of an operation
+// It contains properties to indicate success, hold a value, or an error message
+// It also includes a status code to represent the outcome of the operation
+// The class provides static methods to create success and failure results
