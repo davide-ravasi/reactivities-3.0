@@ -16,6 +16,7 @@ export default function ActivityForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<ActivitySchema>({
+    mode: "onTouched",
     resolver: zodResolver(activitySchema),
   });
   const { id } = useParams<{ id: string }>();
@@ -69,12 +70,16 @@ export default function ActivityForm() {
           defaultValue={activity?.description}
           multiline
           rows={3}
+          error={!!errors.description}
+          helperText={errors.description ? errors.description.message : ""}
         />
         <TextField
           {...register("category")}
           label="Category"
           defaultValue={activity?.category}
           select
+          error={!!errors.category}
+          helperText={errors.category ? errors.category.message : ""}
         />
         <TextField
           {...register("date")}
@@ -85,16 +90,22 @@ export default function ActivityForm() {
               ? new Date(activity.date).toISOString().split("T")[0]
               : ""
           }
+          error={!!errors.date}
+          helperText={errors.date ? errors.date.message : ""}
         />
         <TextField
           {...register("city")}
           label="City"
           defaultValue={activity?.city}
+          error={!!errors.city}
+          helperText={errors.city ? errors.city.message : ""}
         />
         <TextField
           {...register("venue")}
           label="Venue"
           defaultValue={activity?.venue}
+          error={!!errors.venue}
+          helperText={errors.venue ? errors.venue.message : ""}
         />
         <Box display="flex" justifyContent="end" gap={3}>
           <Button onClick={() => handleCancel()} color="inherit">
