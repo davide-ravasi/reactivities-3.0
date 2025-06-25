@@ -13,7 +13,7 @@ namespace API.Controllers
         protected IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetService<IMediator>() ?? throw new InvalidOperationException("Mediator not found");
 
 
-        protected ActionResult<T> HandleResult<T>(Result<T> result)
+        protected ActionResult HandleResult<T>(Result<T> result)
         {
             if (!result.IsSuccess)
             {
@@ -22,7 +22,7 @@ namespace API.Controllers
 
             if (result.IsSuccess && result.Value != null)
             {
-                return result.Value;
+                return Ok(result.Value);
             }
 
             return BadRequest(result.Error);
