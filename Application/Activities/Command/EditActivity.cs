@@ -2,22 +2,26 @@ using MediatR;
 using Persistence;
 using Domain;
 using AutoMapper;
+using Application.Activities.Core;
 
 namespace Application.Activities.Command
 {
     public class EditActivity
     {
-        public class Command : IRequest<string>
+        public class Command : IRequest<Result<Unit>>
         {
             public required Activity Activity { get; set; }
 
         }
 
-        public class Handler(AppDbContext context, IMapper mapper) : IRequestHandler<Command, string>
+        public class Handler(AppDbContext context, IMapper mapper) : IRequestHandler<Command, Result<Unit>>
         {
-            public async Task<string> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await context.Activities.FindAsync([request.Activity.Id], cancellationToken) ?? throw new Exception("Activity not found");
+                var activity = await context.Activities.FindAsync([request.Activity.Id], cancellationToken);
+
+
+                if (activity == null) return Result<Unit>.Failure("Failed to found the activity", 404);
 
                 // activity.Title = request.Activity.Title ?? activity.Title;
                 // activity.Description = request.Activity.Description ?? activity.Description;
@@ -32,9 +36,11 @@ namespace Application.Activities.Command
                 mapper.Map(request.Activity, activity);
 
 
-                await context.SaveChangesAsync(cancellationToken);
+                var result = await context.SaveChangesAsync(cancellationToken) > 0;
 
-                return activity.Id;
+                if (!result) return Result<Unit>.Failure("The activity has not be edited", 400);
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }
