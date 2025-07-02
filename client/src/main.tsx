@@ -11,15 +11,20 @@ import { RouterProvider } from "react-router";
 import { router } from "./app/router/Routes.tsx";
 import { store, StoreContext } from "./lib/stores/store.ts";
 
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <StoreContext.Provider value={store}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </StoreContext.Provider>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <StoreContext.Provider value={store}>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </StoreContext.Provider>
+    </LocalizationProvider>
   </StrictMode>
 );
