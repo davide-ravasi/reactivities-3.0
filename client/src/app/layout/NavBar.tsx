@@ -33,6 +33,7 @@ export default function NavBar() {
             <Box sx={{ display: "flex", gap: 2 }}>
               <MenuItemLink to="/activities">Activities</MenuItemLink>
               <MenuItemLink to="/createActivity">Create activity</MenuItemLink>
+              <MenuItemLink to="/errors">Errors</MenuItemLink>
               {/* <MenuItem
                 sx={{
                   fontSize: "1.2em",
