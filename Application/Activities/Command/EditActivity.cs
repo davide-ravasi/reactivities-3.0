@@ -3,6 +3,7 @@ using Persistence;
 using Domain;
 using AutoMapper;
 using Application.Activities.Core;
+using Application.Activities.DTOs;
 
 namespace Application.Activities.Command
 {
@@ -10,7 +11,7 @@ namespace Application.Activities.Command
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public required Activity Activity { get; set; }
+            public required EditActivityDto ActivityDto { get; set; }
 
         }
 
@@ -18,7 +19,7 @@ namespace Application.Activities.Command
         {
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await context.Activities.FindAsync([request.Activity.Id], cancellationToken);
+                var activity = await context.Activities.FindAsync([request.ActivityDto.Id], cancellationToken);
 
 
                 if (activity == null) return Result<Unit>.Failure("Failed to found the activity", 404);
@@ -33,7 +34,7 @@ namespace Application.Activities.Command
                 // activity.Latitude = request.Activity.Latitude != default ? request.Activity.Latitude : activity.Latitude;
                 // activity.Longitude = request.Activity.Longitude != default ? request.Activity.Longitude : activity.Longitude;
 
-                mapper.Map(request.Activity, activity);
+                mapper.Map(request.ActivityDto, activity);
 
 
                 var result = await context.SaveChangesAsync(cancellationToken) > 0;

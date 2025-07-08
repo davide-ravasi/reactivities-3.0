@@ -1,4 +1,13 @@
-import { Button, ButtonGroup, Typography } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Button,
+  ButtonGroup,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import agent from "../../../lib/api/agent";
 import { useState } from "react";
@@ -18,7 +27,6 @@ export default function TestErrors() {
       else await agent.get(path);
     },
     onError: (err) => {
-      console.log(err);
       if (Array.isArray(err)) {
         setValidationErrors(err);
       } else {
@@ -52,6 +60,16 @@ export default function TestErrors() {
           Unauthorised
         </Button>
       </ButtonGroup>
+
+      {validationErrors.length > 0 && (
+        <>
+          {validationErrors.map((err, index) => (
+            <Alert severity="error" key={index}>
+              <ListItemText primary={err} />
+            </Alert>
+          ))}
+        </>
+      )}
     </>
   );
 }

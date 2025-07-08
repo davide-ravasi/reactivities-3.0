@@ -10,6 +10,7 @@ namespace Application.Activities.Core
         {
             CreateMap<Activity, Activity>();
             CreateMap<CreateActivityDto, Activity>();
+            CreateMap<EditActivityDto, Activity>();
         }
     }
 }
