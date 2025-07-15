@@ -13,8 +13,12 @@ export const activitySchema = z.object({
     required_error: "Date is required",
     invalid_type_error: "Invalid date",
   }),
-  city: requiredString("City"),
-  venue: requiredString("Venue"),
+  location: z.object({
+    venue: requiredString("Address"),
+    city: z.string().optional(),
+    latitude: z.coerce.number(),
+    longitude: z.coerce.number(),
+  }),
 });
 
 export type ActivitySchema = z.infer<typeof activitySchema>;
