@@ -26,12 +26,22 @@ export default function ActivityForm() {
 
   useEffect(() => {
     if (activity) {
-      reset(activity);
+      console.log("Resetting form with activity data:", activity);
+      reset({
+        ...activity,
+        location: {
+          venue: activity.venue,
+          city: activity.city || "",
+          latitude: activity.latitude,
+          longitude: activity.longitude,
+        },
+      });
     }
   }, [activity, reset]);
 
   const onSubmit = async (data: ActivitySchema) => {
     console.log(data);
+    // search the methods to create or update the activity
   };
 
   const handleCancel = () => {
@@ -43,7 +53,6 @@ export default function ActivityForm() {
   };
 
   if (isLoadingActivity) return <Typography>Loading...</Typography>;
-  //if (!activity) return <Typography>Activity not found</Typography>;
 
   return (
     <Paper sx={{ borderRadius: 3, padding: 3 }}>
@@ -57,23 +66,7 @@ export default function ActivityForm() {
         gap={3}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {/* <TextField
-          {...register("title")}
-          label="Title"
-          defaultValue={activity?.title}
-          error={!!errors.title}
-          helperText={errors.title ? errors.title.message : ""}
-        /> */}
         <TextInput name="title" label="Title" control={control} />
-        {/* <TextField
-          {...register("description")}
-          label="Description"
-          defaultValue={activity?.description}
-          multiline
-          rows={3}
-          error={!!errors.description}
-          helperText={errors.description ? errors.description.message : ""}
-        /> */}
         <TextInput
           name="description"
           label="Description"
@@ -81,53 +74,21 @@ export default function ActivityForm() {
           multiline
           rows={3}
         />
-        {/*<TextField
-          {...register("category")}
-          label="Category"
-          defaultValue={activity?.category}
-          select
-          error={!!errors.category}
-          helperText={errors.category ? errors.category.message : ""}
-        />*/}
-        <SelectInput
-          name="category"
-          label="Category"
-          items={categoryOptions}
-          control={control}
-          select
-        ></SelectInput>
-        <DateTimeInput name="date" label="Date" control={control} />
-        {/*<TextField
-          {...register("date")}
-          label="Date"
-          type="date"
-          defaultValue={
-            activity?.date
-              ? new Date(activity.date).toISOString().split("T")[0]
-              : ""
-          }
-          error={!!errors.date}
-          helperText={errors.date ? errors.date.message : ""}
-        />*/}
-        {/*<TextField
-          {...register("city")}
-          label="City"
-          defaultValue={activity?.city}
-          error={!!errors.city}
-          helperText={errors.city ? errors.city.message : ""}
-        />*/}
+        <Box display="flex" gap={2}>
+          <SelectInput
+            name="category"
+            label="Category"
+            items={categoryOptions}
+            control={control}
+            select
+          ></SelectInput>
+          <DateTimeInput name="date" label="Date" control={control} />
+        </Box>
         <LocationInput
           name="location"
           control={control}
           label="Enter the location"
         />
-        {/*<TextField
-          {...register("venue")}
-          label="Venue"
-          defaultValue={activity?.venue}
-          error={!!errors.venue}
-          helperText={errors.venue ? errors.venue.message : ""}
-        />*/}
         <Box display="flex" justifyContent="end" gap={3}>
           <Button onClick={() => handleCancel()} color="inherit">
             Cancel

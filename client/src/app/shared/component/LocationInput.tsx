@@ -80,7 +80,6 @@ export default function LocationInput<T extends FieldValues>(props: Props<T>) {
 
   useEffect(() => {
     if (field.value && typeof field.value === "object") {
-      console.log("Setting input value for object:", field.value.venue);
       setInputValue(field.value.venue || "");
     } else {
       setInputValue(field.value || "");
