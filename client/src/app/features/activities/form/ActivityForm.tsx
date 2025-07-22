@@ -116,7 +116,11 @@ export default function ActivityForm() {
           error={!!errors.city}
           helperText={errors.city ? errors.city.message : ""}
         />*/}
-        <LocationInput name="location" control={control} label="Location" />
+        <LocationInput
+          name="location"
+          control={control}
+          label="Enter the location"
+        />
         {/*<TextField
           {...register("venue")}
           label="Venue"

@@ -1,11 +1,4 @@
-import {
-  Alert,
-  AlertTitle,
-  Button,
-  Divider,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, Paper, Typography } from "@mui/material";
 import { useLocation } from "react-router";
 
 export default function ServerError() {

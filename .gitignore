@@ -694,3 +694,4 @@ API/reactivities.db
 *.dll
 *.pdb
 *.exe
+client/.env.development
